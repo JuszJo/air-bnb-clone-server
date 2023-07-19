@@ -9,6 +9,7 @@ dotenv.config()
 useRoutes(app)
 
 const PORT = 3000
+
 mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     app.listen(PORT, () => {
