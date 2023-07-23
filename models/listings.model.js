@@ -4,6 +4,6 @@ const ListingsSchema = new Schema({}, {
     collection: "listingsAndReviews"
 })
 
-const listings = model("listingsAndReview", ListingsSchema)
+const Listings = model("listingsAndReview", ListingsSchema)
 
-export default listings
+export default Listings
