@@ -16,4 +16,13 @@ export default function useRoutes(app) {
     app.use(indexRoute)
 
     app.use(loginRoute)
+
+    // error
+    app.use((err, req, res, next) => {
+        console.log(err.stack);
+
+        res.status(500).json({
+            status: "internal server error"
+        })
+    })
 }
