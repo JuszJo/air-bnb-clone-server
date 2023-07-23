@@ -7,8 +7,8 @@ export async function sendListings(req, res) {
         res.json(result)    
     }
     catch(error) {
-        res.status(500).json({
-            status: "internal server error"
+        res.status(400).json({
+            status: "error opening page"
         })
     }
 }

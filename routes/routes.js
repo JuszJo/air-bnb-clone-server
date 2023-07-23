@@ -1,5 +1,6 @@
 import indexRoute from "./index.route.js"
 import loginRoute from "./login.route.js"
+import signupRoute from "./signup.route.js"
 
 export default function useRoutes(app) {
     // cors
@@ -16,6 +17,8 @@ export default function useRoutes(app) {
     app.use(indexRoute)
 
     app.use(loginRoute)
+
+    app.use(signupRoute)
 
     // error
     app.use((err, req, res, next) => {
