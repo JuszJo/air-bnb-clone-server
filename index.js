@@ -4,7 +4,10 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 
 const app = express()
+
 dotenv.config()
+
+app.use(express.json())
 
 useRoutes(app)
 
