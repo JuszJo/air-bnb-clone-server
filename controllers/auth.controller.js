@@ -1,11 +1,9 @@
 import { checkUser } from "../services/auth.services.js";
 
-export function handleLogin(req, res) {
+export async function handleLogin(req, res) {
     const userObject = req.body
-
-    console.log(userObject);
-
-    if(checkUser(userObject)) {
+    
+    if(await checkUser(userObject)) {
         res.json({
             status: "authenticated"
         })

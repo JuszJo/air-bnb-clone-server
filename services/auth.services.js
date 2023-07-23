@@ -1,8 +1,9 @@
-export function checkUser(userObject) {
-    const username = "josh123"
-    const password = 1234
+import User from "../models/user.model.js"
 
-    if(userObject.username == username && userObject.password == password) {
+export async function checkUser(userObject) {
+    const result = await User.findOne({username: userObject.username, password: userObject.password})
+
+    if(result) {
         return true
     }
     
