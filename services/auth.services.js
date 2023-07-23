@@ -25,8 +25,8 @@ export async function saveUser(userObject) {
         const hashedPassword = await bycrypt.hash(userObject.password, saltRounds)
 
         const user = new User({
-            password: hashedPassword,
             ...userObject,
+            password: hashedPassword,
         })
 
         await user.save()
