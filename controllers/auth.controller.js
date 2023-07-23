@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken"
 import { checkUser, saveUser } from "../services/auth.services.js";
 
 export async function handleLogin(req, res) {
@@ -5,8 +6,13 @@ export async function handleLogin(req, res) {
     
     try {
         if(await checkUser(userObject)) {
+            const token = jwt.sign({user: userObject}, process.env.JWT_SECRET, {
+                expiresIn: 300
+            })
+
             res.json({
-                status: "authenticated"
+                status: "authorized",
+                token,
             })
         }
         else {

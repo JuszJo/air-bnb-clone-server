@@ -1,6 +1,8 @@
 import indexRoute from "./index.route.js"
 import loginRoute from "./login.route.js"
 import signupRoute from "./signup.route.js"
+import testRoute from "./test.route.js"
+import verifyToken from "../middleware/auth.middleware.js"
 
 export default function useRoutes(app) {
     // cors
@@ -13,7 +15,12 @@ export default function useRoutes(app) {
         next()
     })
 
+    // middleware
+    app.use('/test', verifyToken)
+
     // routes
+    app.use(testRoute)
+
     app.use(indexRoute)
 
     app.use(loginRoute)
