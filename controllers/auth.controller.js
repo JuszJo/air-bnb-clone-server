@@ -10,19 +10,19 @@ export async function handleLogin(req, res) {
                 expiresIn: 300
             })
 
-            res.json({
+            res.status(200).json({
                 status: "authorized",
                 token,
             })
         }
         else {
-            res.json({
+            res.status(401).json({
                 status: "unauthorized"
             })
         }
     }
     catch(error) {
-        res.status(400).json({
+        res.status(500).json({
             status: "error during login"
         })
     }
@@ -34,12 +34,12 @@ export async function handleSignup(req, res) {
     try {
         await saveUser(userObject)
 
-        res.json({
+        res.status(200).json({
             status: "signup successful"
         })
     }
     catch(error) {
-        res.status(400).json({
+        res.status(500).json({
             status: "error during signup"
         })
     }
