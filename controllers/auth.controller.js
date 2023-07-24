@@ -39,6 +39,8 @@ export async function handleSignup(req, res) {
         })
     }
     catch(error) {
+        if(error) throw error
+        
         res.status(500).json({
             status: "error during signup"
         })
