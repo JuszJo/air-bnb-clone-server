@@ -17,7 +17,7 @@ export default function useRoutes(app) {
     })
 
     // middleware
-    app.use('/test', verifyToken)
+    app.use(verifyToken)
 
     // routes
     app.use(testRoute)

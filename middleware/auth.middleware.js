@@ -8,8 +8,8 @@ export default function verifyToken(req, res, next) {
     const token = req.headers["x-access-token"]
 
     if(!token) {
-        res.status(400).json({
-            status: "unauthorized"
+        res.status(300).json({
+            status: "unauthorized, please login"
         })
     }
     else {
