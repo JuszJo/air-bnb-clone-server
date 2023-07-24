@@ -11,6 +11,7 @@ export default function useRoutes(app) {
             "Access-Control-Allow-Origin": "http://localhost:5173",
             "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
             "Access-Control-Allow-Headers": "X-PINGOTHER, Content-Type, x-access-token",
+            "Access-Control-Allow-Credentials": "true",
         })
 
         next()
