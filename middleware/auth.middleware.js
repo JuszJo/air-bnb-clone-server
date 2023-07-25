@@ -9,7 +9,7 @@ export default function verifyToken(req, res, next) {
     
         if(!token) {
             res.status(401).json({
-                status: "unauthorized, please login"
+                error: "unauthorized"
             })
         }
         else {
@@ -20,7 +20,7 @@ export default function verifyToken(req, res, next) {
             }
             catch(error) {
                 res.status(401).json({
-                    status: "invalid token"
+                    error: error.message
                 })
             }
         }

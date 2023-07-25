@@ -9,12 +9,21 @@ export default function useRoutes(app) {
     app.use((req, res, next) => {
         res.set({
             "Access-Control-Allow-Origin": "http://localhost:5173",
-            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-            "Access-Control-Allow-Headers": "X-PINGOTHER, Content-Type, x-access-token",
-            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
         })
 
         next()
+    })
+
+    app.options('*', (req, res) => {
+        res.set({
+            "Access-Control-Allow-Origin": "http://localhost:5173",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
+        })
+
+        res.sendStatus(200)
     })
 
     // middleware
@@ -34,7 +43,7 @@ export default function useRoutes(app) {
         console.log(err.stack);
 
         res.status(500).json({
-            status: "internal server error"
+            status: err.message
         })
     })
 }

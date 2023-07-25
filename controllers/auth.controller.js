@@ -23,7 +23,7 @@ export async function handleLogin(req, res) {
     }
     catch(error) {
         res.status(500).json({
-            status: "error during login"
+            error: error.message
         })
     }
 }
@@ -39,10 +39,8 @@ export async function handleSignup(req, res) {
         })
     }
     catch(error) {
-        if(error) throw error
-        
         res.status(500).json({
-            status: "error during signup"
+            error: error.message
         })
     }
 }
