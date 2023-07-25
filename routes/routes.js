@@ -6,16 +6,6 @@ import verifyToken from "../middleware/auth.middleware.js"
 
 export default function useRoutes(app) {
     // cors
-    app.use((req, res, next) => {
-        res.set({
-            "Access-Control-Allow-Origin": "http://localhost:5173",
-            "Access-Control-Allow-Methods": "*",
-            "Access-Control-Allow-Headers": "*",
-        })
-
-        next()
-    })
-
     app.options('*', (req, res) => {
         res.set({
             "Access-Control-Allow-Origin": "http://localhost:5173",
@@ -24,6 +14,16 @@ export default function useRoutes(app) {
         })
 
         res.sendStatus(200)
+    })
+
+    app.use((req, res, next) => {
+        res.set({
+            "Access-Control-Allow-Origin": "http://localhost:5173",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
+        })
+
+        next()
     })
 
     // middleware
