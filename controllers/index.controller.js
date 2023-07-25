@@ -1,6 +1,7 @@
 import Listings from "../models/listings.model.js";
 
 export async function sendListings(req, res) {
+    console.log(req.user);
     try {
         const result = await Listings.find({}).limit(10)
     

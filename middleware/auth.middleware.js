@@ -15,6 +15,8 @@ export default function verifyToken(req, res, next) {
         else {
             try {
                 const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+                req.user = decoded
         
                 next()
             }
