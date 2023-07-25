@@ -5,7 +5,8 @@ export default function verifyToken(req, res, next) {
         next()
     }
     else {
-        const token = req.headers["x-access-token"]
+        console.log(req.headers);
+        const token = req.headers["authorization"]
     
         if(!token) {
             res.status(401).json({
