@@ -5,7 +5,6 @@ export default function verifyToken(req, res, next) {
         next()
     }
     else {
-        console.log(req.headers);
         const token = req.headers["authorization"]
     
         if(!token) {
