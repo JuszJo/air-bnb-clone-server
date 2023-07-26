@@ -2,6 +2,7 @@ import indexRoute from "./index.route.js"
 import loginRoute from "./login.route.js"
 import signupRoute from "./signup.route.js"
 import testRoute from "./test.route.js"
+import authRoute from "./auth.route.js"
 import verifyToken from "../middleware/auth.middleware.js"
 
 export default function useRoutes(app) {
@@ -32,6 +33,8 @@ export default function useRoutes(app) {
 
     // routes
     app.use(testRoute)
+
+    app.use(authRoute)
 
     app.use(indexRoute)
 
