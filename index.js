@@ -19,3 +19,6 @@ mongoose.connect(process.env.MONGO_URL)
         console.log(`http://localhost:${PORT}`);
     })
 })
+.catch(error => {
+    console.error(error)
+})
