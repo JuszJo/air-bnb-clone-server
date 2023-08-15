@@ -4,29 +4,13 @@ import signupRoute from "./signup.route.js"
 import testRoute from "./test.route.js"
 import authRoute from "./auth.route.js"
 import verifyToken from "../middleware/auth.middleware.js"
+import { cors, corsOptions } from "../middleware/cors.middleware.js"
 
 export default function useRoutes(app) {
-    // cors
-    app.options('*', (req, res) => {
-        res.set({
-            "Access-Control-Allow-Origin": "http://localhost:5173",
-            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-            "Access-Control-Allow-Headers": "content-type, authorization",
-            "Access-Control-Allow-Credentials": "true"
-        })
+    // cors middleware
+    app.options("*", corsOptions)
 
-        res.sendStatus(200)
-    })
-
-    app.use((req, res, next) => {
-        res.set({
-            "Access-Control-Allow-Origin": "http://localhost:5173",
-            "Access-Control-Allow-Methods": "GET, POST",
-            "Access-Control-Allow-Headers": "content-type, authorization",
-        })
-
-        next()
-    })
+    app.use(cors)
 
     // middleware
     app.use(verifyToken)
