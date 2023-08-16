@@ -19,8 +19,6 @@ export default function verifyToken(req, res, next) {
                 const {user: {username}} = decoded
 
                 req.user = username
-
-                console.log(req.user);
         
                 next()
             }
