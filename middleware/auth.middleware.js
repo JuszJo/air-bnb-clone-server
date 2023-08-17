@@ -8,9 +8,9 @@ export default function verifyToken(req, res, next) {
         const token = req.headers["authorization"]
     
         if(!token) {
-            res.status(401).json({
-                error: "unauthorized"
-            })
+            res.user = null
+                
+            next()
         }
         else {
             try {
@@ -23,9 +23,9 @@ export default function verifyToken(req, res, next) {
                 next()
             }
             catch(error) {
-                res.status(401).json({
-                    error: error.message
-                })
+                res.user = null
+
+                next()
             }
         }
     }

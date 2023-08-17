@@ -15,11 +15,11 @@ export default function useRoutes(app) {
 
     // middleware
     app.use(verifyToken)
+    
+    app.use(authRoute)
 
     // routes
     app.use(testRoute)
-
-    app.use(authRoute)
 
     app.use(indexRoute)
 

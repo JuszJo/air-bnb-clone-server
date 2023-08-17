@@ -10,9 +10,14 @@ export async function handleLogin(req, res) {
                 expiresIn: 300
             })
 
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+
+            const {user: {username}} = decoded
+
             res.status(200).json({
                 status: "authorized",
                 token,
+                username
             })
         }
         else {
