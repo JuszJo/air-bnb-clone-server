@@ -36,7 +36,7 @@ const ListingsSchema2 = new Schema({
     },
     reviews: {
         type: Array,
-        required: true,
+        // required: true,
     }
     
 }, {

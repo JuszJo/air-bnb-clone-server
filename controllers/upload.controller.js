@@ -1,4 +1,5 @@
 import cloudinary from "../config/cloudinary.config.js"
+import Listings from "../models/listings.model.js";
 
 export default async function handleUpload(req, res) {
     try {
@@ -6,7 +7,11 @@ export default async function handleUpload(req, res) {
 
         const results = await promises;
 
-        console.log(results);
+        const secure_urls = results.map(result => result.secure_url)
+
+        const userListing = new Listings({...req.body, images: secure_urls, owner: req.user})
+
+        await userListing.save()
 
         res.json({ message: "Upload successful" })
     }
