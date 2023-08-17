@@ -13,11 +13,11 @@ export default async function handleUpload(req, res) {
 
         await userListing.save()
 
-        res.json({ message: "Upload successful" })
+        res.status(200).json({ message: "Upload successful" })
     }
     catch(err) {
         if(err) console.log(err);
 
-        res.json({ message: "Upload failed" })
+        res.status(401).json({ message: "Upload failed" })
     }
 }
