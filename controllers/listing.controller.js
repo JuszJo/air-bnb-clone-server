@@ -5,7 +5,7 @@ export async function getListing(req, res) {
 
     if(result) {
         res.status(200).json({
-            data: result
+            result
         })
     }
     else {
