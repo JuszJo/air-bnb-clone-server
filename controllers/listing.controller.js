@@ -5,7 +5,6 @@ export async function getListing(req, res) {
 
     if(result) {
         res.status(200).json({
-            status: "success",
             data: result
         })
     }
