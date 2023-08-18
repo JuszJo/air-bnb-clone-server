@@ -1,5 +1,6 @@
 import cloudinary from "../config/cloudinary.config.js"
 import Listings from "../models/listings.model.js";
+import { getUser } from "../services/auth.services.js";
 
 export default async function handleUpload(req, res) {
     try {
@@ -9,7 +10,9 @@ export default async function handleUpload(req, res) {
 
         const secure_urls = results.map(result => result.secure_url)
 
-        const userListing = new Listings({...req.body, images: secure_urls, owner: req.user, cloudinary: {
+        const name = await getUser(req.user)
+
+        const userListing = new Listings({...req.body, images: secure_urls, owner: req.user, owner_name: name, cloudinary: {
             asset_id: results[0].asset_id,
             public_id: results[0].public_id,
         }})

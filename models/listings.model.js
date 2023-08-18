@@ -40,6 +40,10 @@ const ListingsSchema2 = new Schema({
     cloudinary: {
         type: Object,
         required: true,
+    },
+    owner_name: {
+        type: String,
+        required: true,
     }
 }, {
     collection: "listings"
