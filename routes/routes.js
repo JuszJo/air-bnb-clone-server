@@ -5,6 +5,7 @@ import testRoute from "./test.route.js"
 import authRoute from "./auth.route.js"
 import uploadRoute from "./upload.route.js"
 import listingRoute from "./listing.route.js"
+import deleteRoute from "./delete.route.js"
 import verifyToken from "../middleware/auth.middleware.js"
 import { cors, corsOptions } from "../middleware/cors.middleware.js"
 
@@ -31,6 +32,8 @@ export default function useRoutes(app) {
     app.use(listingRoute)
 
     app.use(uploadRoute)
+
+    app.use(deleteRoute)
 
     // error
     app.use((err, req, res, next) => {

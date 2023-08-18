@@ -36,9 +36,11 @@ const ListingsSchema2 = new Schema({
     },
     reviews: {
         type: Array,
-        // required: true,
+    },
+    cloudinary: {
+        type: Object,
+        required: true,
     }
-    
 }, {
     collection: "listings"
 })

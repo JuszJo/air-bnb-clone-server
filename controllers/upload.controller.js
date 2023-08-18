@@ -9,7 +9,10 @@ export default async function handleUpload(req, res) {
 
         const secure_urls = results.map(result => result.secure_url)
 
-        const userListing = new Listings({...req.body, images: secure_urls, owner: req.user})
+        const userListing = new Listings({...req.body, images: secure_urls, owner: req.user, cloudinary: {
+            asset_id: results[0].asset_id,
+            public_id: results[0].public_id,
+        }})
 
         await userListing.save()
 
