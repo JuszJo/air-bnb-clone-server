@@ -30,7 +30,7 @@ export default async function verifyToken(req, res, next) {
                 next()
             }
             catch(error) {
-                console.log(error);
+                console.log(error.message);
 
                 res.user = null
 
