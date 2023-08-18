@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
+import { getRole } from "../services/auth.services.js"
 
-export default function verifyToken(req, res, next) {
+export default async function verifyToken(req, res, next) {
     if(req.path == "/login" || req.path == "/signup") {
         next()
     }
@@ -8,6 +9,8 @@ export default function verifyToken(req, res, next) {
         const token = req.headers["authorization"]
     
         if(!token) {
+            console.log("no token");
+            
             res.user = null
                 
             next()
@@ -19,10 +22,16 @@ export default function verifyToken(req, res, next) {
                 const {user: {username}} = decoded
 
                 req.user = username
+
+                const role = await getRole(username)
+
+                req.role = role
         
                 next()
             }
             catch(error) {
+                console.log(error);
+
                 res.user = null
 
                 next()

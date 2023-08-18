@@ -18,6 +18,17 @@ export async function checkUser(userObject) {
     }
 }
 
+export async function getRole(username) {
+    try {
+        const result = await User.findOne({username}).select({role: 1, _id: 0})
+
+        return result.role
+    }
+    catch(err) {
+        throw err
+    }
+}
+
 export async function saveUser(userObject) {
     try {
         const saltRounds = 10

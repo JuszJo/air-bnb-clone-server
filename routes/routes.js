@@ -2,7 +2,6 @@ import indexRoute from "./index.route.js"
 import loginRoute from "./login.route.js"
 import signupRoute from "./signup.route.js"
 import testRoute from "./test.route.js"
-import authRoute from "./auth.route.js"
 import uploadRoute from "./upload.route.js"
 import listingRoute from "./listing.route.js"
 import deleteRoute from "./delete.route.js"
@@ -17,8 +16,6 @@ export default function useRoutes(app) {
 
     // middleware
     app.use(verifyToken)
-
-    app.use(authRoute)
 
     // routes
     app.use(testRoute)
