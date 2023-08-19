@@ -3,9 +3,11 @@ import Listings from "../models/listings.model.js";
 
 export default async function deleteUpload(req, res) {
     try {
-        const result = await Listings.findByIdAndDelete(req.params.id)
+        const result = await Listings.findById(req.params.id)
     
         const response = await cloudinary.api.delete_resources([result.cloudinary.public_id])
+
+        await Listings.findByIdAndDelete(req.params.id)
 
         res.status(200).json({ message: "Delete successful" })
     }
