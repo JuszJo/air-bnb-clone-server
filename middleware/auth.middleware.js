@@ -9,8 +9,6 @@ export default async function verifyToken(req, res, next) {
         const token = req.headers["authorization"]
     
         if(!token) {
-            console.log("no token");
-            
             res.user = null
                 
             next()
@@ -30,8 +28,6 @@ export default async function verifyToken(req, res, next) {
                 next()
             }
             catch(error) {
-                console.log(error.message);
-
                 res.user = null
 
                 next()
