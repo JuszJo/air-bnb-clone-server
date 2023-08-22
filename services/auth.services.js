@@ -40,8 +40,26 @@ export async function getUser(username) {
     }
 }
 
+function validate_signup(userObject) {
+    const errors = {
+        message: {}
+    }
+
+    if(userObject.password.length <= 5) errors.message["password"] = "password length must be at least 6 characters"
+
+    Object.keys(userObject).forEach(value => {
+        if(!(userObject[value])) errors.message[value] = `${value} must be present`
+    })
+
+    return errors
+}
+
 export async function saveUser(userObject) {
     try {
+        const errors = validate_signup(userObject)
+
+        if(errors) throw errors
+
         const saltRounds = 10
 
         const hashedPassword = await bycrypt.hash(userObject.password, saltRounds)
