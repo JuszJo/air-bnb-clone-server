@@ -58,7 +58,7 @@ export async function saveUser(userObject) {
     try {
         const errors = validate_signup(userObject)
 
-        if(errors) throw errors
+        if(Object.keys(errors.message).length > 0) throw errors
 
         const saltRounds = 10
 
