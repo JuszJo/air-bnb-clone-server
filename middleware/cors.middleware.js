@@ -1,8 +1,6 @@
-const prod = true
-
 export function cors(req, res, next) {
     res.set({
-        "Access-Control-Allow-Origin": prod ? "https://jobnb.netlify.app" : "http://localhost:5173",
+        "Access-Control-Allow-Origin": process.env.NODE_ENV == "production" ? "https://jobnb.netlify.app" : "http://localhost:5173",
         "Access-Control-Allow-Methods": "GET, POST, DELETE",
         "Access-Control-Allow-Headers": "content-type, authorization",
     })
@@ -12,7 +10,7 @@ export function cors(req, res, next) {
 
 export function corsOptions(req, res) {
     res.set({
-        "Access-Control-Allow-Origin": prod ? "https://jobnb.netlify.app" : "http://localhost:5173",
+        "Access-Control-Allow-Origin": process.env.NODE_ENV == "production" ? "https://jobnb.netlify.app" : "http://localhost:5173",
         "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "content-type, authorization",
         "Access-Control-Allow-Credentials": "true"

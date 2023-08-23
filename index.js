@@ -13,7 +13,9 @@ useRoutes(app)
 
 const PORT = 3000
 
-mongoose.connect(process.env.MONGO_URL)
+const URL = process.env.NODE_ENV == "production" ? process.env.MONGO_URL : "mongodb://127.0.0.1:27017/jobnb"
+
+mongoose.connect(URL)
 .then(() => {
     app.listen(PORT, () => {
         console.log(`http://localhost:${PORT}`);
