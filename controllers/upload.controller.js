@@ -2,8 +2,28 @@ import cloudinary from "../config/cloudinary.config.js"
 import Listings from "../models/listings.model.js";
 import { getUser } from "../services/auth.services.js";
 
+function validate_upload(userObject, files) {
+    const errors = {
+        message: {}
+    }
+
+    if(files.length < 1) {
+        errors.message["files"] = `please upload an image`
+    }
+
+    Object.keys(userObject).forEach(value => {
+        if(!(userObject[value])) errors.message[value] = `${value} must be present`
+    })
+
+    return errors
+}
+
 export default async function handleUpload(req, res) {
     try {
+        const errors = validate_upload(req.body, req.files)
+
+        if(Object.keys(errors.message).length > 0) throw errors
+        
         const promises = Promise.all(req.files.map(file => cloudinary.uploader.upload(file.path, {folder: req.user})))
 
         const results = await promises;
@@ -24,6 +44,8 @@ export default async function handleUpload(req, res) {
     catch(err) {
         if(err) console.log(err);
 
-        res.status(401).json({ message: "Upload failed" })
+        res.status(401).json({
+            message: err.message
+        })
     }
 }
